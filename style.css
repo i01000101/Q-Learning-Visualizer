@@ -1,0 +1,344 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+:root {
+    --wallColor: #162a33;
+    --startColor: #ff286f;
+    --goalColor: #00ff0d;
+}
+
+@keyframes shortestWayAnimation {
+    0% {
+        transform: scale(0.9);
+        background-color: rgb(252, 237, 156);
+        border-radius: 35% 35% 35% 35% / 35% 35% 35% 35% 
+    }
+
+    12% {
+        transform: scale(0.7);
+        background-color: rgb(252, 237, 156);
+        border-radius: 40% 40% 40% 40% / 40% 40% 40% 40% 
+    }
+
+    25% {
+        transform: scale(0.5);
+        background-color: rgb(252, 237, 156);
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50% 
+    }
+
+    37% {
+        transform: scale(0.3);
+        background-color: rgb(252, 237, 156);
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50% 
+    }
+    
+    50% {
+        transform: scale(0.6);
+        background-color: rgb(253, 225, 67);
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50% 
+    }
+
+    65% {
+        transform: scale(0.9);
+        background-color: rgb(253, 225, 67);
+        border-radius: 40% 40% 40% 40% / 40% 40% 40% 40% 
+    }
+
+    75% {
+        transform: scale(1.2);
+        background-color: rgb(255, 220, 22);
+    }
+
+    100% {
+        transform: scale(1.0);
+        background-color: rgb(255, 217, 0);
+    }
+}
+
+@keyframes wallAnimation {
+    0% {
+        transform: scale(0.8);
+      }
+
+    25% {
+        transform: scale(0.9);
+    }
+    
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+hr {
+    width: 80%;
+    height: 1px;
+    background-color: #555;
+    border: none;
+}
+
+#controlPanel {
+    height: 100vh;
+    width: 20%;
+    min-width: 200px;
+    background-color: #000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo {
+    width: calc(50%);
+    padding-top: 50%;
+    background-image: url('icons/logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+#infoArea {
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+}
+
+div.info div {
+    align-items: center;
+}
+
+div.color{
+    flex: 2;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+div.text{
+    flex: 5;
+    text-align: center;
+}
+
+
+input[type=color] {
+    -webkit-appearance: none;
+    height: 25px;
+    width: 25px;
+    border-style: none;
+	outline: 0;
+    padding: 0;
+    background: none;
+    cursor: crosshair;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+#mainScreen {
+    height: 100vh;
+    width: 80%;
+    min-width: 450px;
+    min-height: 450px;
+    background-color: #D9D8D7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#warning {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    top: 20px;
+    left: 20%;
+    height: 40px;
+    font-size: 30px;
+    padding: 5px;
+
+
+    background-color: #000;
+    color: white;
+}
+
+#map {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+input, button  {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+input.size {
+    width: 50px;
+    height: 20px;
+    margin: 10px;
+    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+    text-align: center;
+    border: none;
+    border-bottom: 3px solid gray;
+    background-color: transparent;
+}
+
+input#generation {
+    width: 100px;
+}
+
+input.size:focus {
+    border-bottom-color: #0084ff;
+    box-shadow: 0 10px 20px 1px #0084ff;
+}
+
+button#generate.able {
+    width: 150px;
+    height: 40px;
+    
+    background-color: #0068c9;
+    margin-top: 20px;
+    border: none;
+    /*border-radius: 17px;*/
+    
+    box-shadow: 0 0 20px 1px #0084ff;
+}
+
+button#generate.disable {
+    background-color: #424242;
+    color:rgb(153, 153, 153);
+    box-shadow: 0 0 5px 1px #4b4b4b;
+    width: 150px;
+    height: 40px;
+    margin-top: 20px;
+    border: none;
+}
+
+button#generate.able:hover {
+    box-shadow: 0 0 30px 4px #0084ff;
+}
+
+button.control {
+    width: 150px;
+    height: 35px;
+    color: rgb(255, 255, 255);
+    margin-top: 20px;
+    border: none;
+    /*border-radius: 17px;*/
+}
+
+.vGraphs{
+    width: 150px;
+    height: 35px;
+    
+    background-color: #0068c9;
+    margin-top: 20px;
+    border: none;
+    /*border-radius: 17px;*/
+    
+    box-shadow: 0 0 20px 1px #0084ff;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.cell {
+    flex: 1;
+    background-color: #9b9b9b;
+    margin: 1px;
+    border-radius: 2px;
+}
+
+.wall {
+    background-color: var(--wallColor);
+    animation-name: wallAnimation;
+    animation-duration: 0.3s;
+    animation-delay: 0.1s;
+}
+
+.wall.currentPoint {
+    background-color: var(--wallColor);;
+    filter: saturate(300%);
+}
+
+.shortestWay {
+    background-color: rgb(255, 217, 0);
+    animation-name: shortestWayAnimation;
+    animation-duration: 1s;
+}
+
+#startPoint {
+    background-color: var(--startColor);
+}
+
+#startPoint.currentPoint {
+    background-color: var(--startColor);
+    filter: saturate(200%);
+}
+
+#goalPoint {
+    background-color: var(--goalColor);
+}
+
+.currentPoint{
+    background-color: var(--startColor);
+    filter: contrast(0.7) brightness(1.5)
+}
+
+.selectableCell {
+    cursor: pointer;
+}
+
+.selectableCell:hover {
+    box-shadow: 0 0 10px 3px rgb(95, 95, 95) inset;
+}
+
+#train {
+    background-color: rgb(0, 201, 0);
+    box-shadow: 0 0 20px 1px rgb(0, 255, 0);
+}
+
+#cancel {
+    background-color: rgb(255, 0, 0);
+    box-shadow: 0 0 20px 1px rgb(255, 0, 0);
+}
+
+#train:hover {
+    box-shadow: 0 0 30px 4px rgb(0, 255, 0);
+}
+
+#cancel:hover {
+    box-shadow: 0 0 30px 4px rgb(255, 0, 0);
+}

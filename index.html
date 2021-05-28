@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q-Learning</title>
+
+    <link rel="icon" href="icons/favIcon.png">
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div id="controlPanel">
+        <div id="logo" onclick="javascript:window.location.reload(true)"></div>
+        <div>Size</div>
+        <div>
+            <input type="text" id="row" class="size" placeholder="15" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+            <input type="text" id="column" class="size" placeholder="15" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+        </div>
+        <div>Random Wall Rate in Percent</div>
+        <div>
+            <input type="text" id="wallRate" class="size" placeholder="30" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+        </div>
+        <div>Episode Goal</div>
+        <div>
+            <input type="text" id="generation" class="size" placeholder="10000" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+        </div>
+        <button id="generate" class="able" onclick="generateMap()">REGENERATE MAP</button>
+        <hr style="margin-top: 20px">
+        <div id="infoArea">
+            <div class="info">
+                <div class="color">
+                    <input id="startPointColorSelector" type="color" value="#E91E62" oninput="setColor(this)">
+                </div>
+                <div class="text">
+                    <div>Start Point</div>
+                    <div>(Middle click to select)</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="color">
+                    <input id="goalPointColorSelector" type="color" value="#00ff0d" oninput="setColor(this)">
+                </div>
+                <div class="text">
+                    <div>Goal Point</div>
+                    <div>(Right click to select)</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="color">
+                    <input id="wallColorSelector" type="color" value="#0c3547" oninput="setColor(this)">
+                </div>
+                <div class="text">
+                    <div>Wall</div>
+                    <div>(Left click to add)</div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 10px 0 20px 0">
+        <div id="episodeCount" style="margin-top: 10px;" title="It probably won't end, make the wait time zero to see shortest way">Episode: 0</div>
+        <div style="margin-top: 15px;">
+            <div class="text">Wait time</div>
+            <input type="range" min="0" max="1" value="0" step="0.01" class="slider" id="myRange" oninput="setWaitTime(this.value)">
+            <div id='waitTimeLabel' class="text">0 second</div>
+        </div>
+        <button class="control" id='train'>TRAIN</button>
+    </div>
+    <div id="mainScreen">
+        <div id="warning"></div>
+        <div id="map">
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="logic.js"></script>
+</body>
+</html>
